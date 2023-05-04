@@ -11,11 +11,18 @@
 #  updated_at :datetime         not null
 #
 class Director < ApplicationRecord
-  def filmography
-    key = self.id
 
-    the_many = Movie.where({ :director_id => key })
+  has_many(:filmography, {:foreign_key => "director_id", :class_name => "Movie"})
+  # has_many(:movies, {:foreign_key => "director_id", :class_name => "Movie"})
 
-    return the_many
-  end
+ 
+ ## Old Way ##
+
+  # def filmography
+   #  key = self.id
+
+    # the_many = Movie.where({ :director_id => key })
+
+    # return the_many
+  # end
 end
